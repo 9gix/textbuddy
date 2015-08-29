@@ -23,7 +23,8 @@ TextBuddy::~TextBuddy() {
 
 void TextBuddy::runInteractively() {
     std::string command_line;
-    while (std::cout << "Command: " && std::getline(std::cin, command_line)) {
+    while (std::getline(std::cin, command_line)) {
+        std::cout << "Command: " << command_line << std::endl;
         TextBuddyCommand command = this->parseCommand(command_line);
         this->executeCommand(command);
     }
@@ -62,33 +63,10 @@ void TextBuddy::executeCommand(const TextBuddyCommand &command) {
     std::cout << std::endl;
 }
 
-void TextBuddy::runFromScriptFile(char* filename) {
-    std::ifstream input_file(filename);
-    std::string command_line;
-    if (input_file.is_open()) {
-        while (std::getline(input_file, command_line)) {
-            std::cout << "command: " << command_line << std::endl;
-            TextBuddyCommand command = this->parseCommand(command_line);
-            this->executeCommand(command);
-        }
-    } else {
-        std::cout << "File not found" << std::endl;
-    }
-}
-
 void TextBuddy::run(int argc, char* argv[]) {
     // restore existing task.
     this->load();
-
-	if (argc == 1) {
-        // User will run interactively from the command prompt
-		this->runInteractively();
-	} else if (argc == 2) {
-        // Run the script file containing the list of user command.
-		this->runFromScriptFile(argv[1]);
-    } else {
-        throw std::invalid_argument("Please provide input script or run without argument");
-    }
+    this->runInteractively();
 }
 
 void TextBuddy::addTask(const std::string &memo) {

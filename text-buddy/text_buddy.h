@@ -13,11 +13,7 @@ public:
     /* Application Mode. */
     // Start Application Call
 	void run(int argc, char* argv[]);
-    // User Mode
     void runInteractively();
-    // Script Mode
-    void runFromScriptFile(char* filename);
-
 
     // User Command Parser and executor
     TextBuddyCommand parseCommand(const std::string &command_line);
