@@ -109,7 +109,9 @@ void TextBuddy::load() {
 void TextBuddy::save() {
     std::ofstream task_file(TASK_FILENAME);
     if (task_file.is_open()) {
-        for (std::vector<Task>::const_iterator it = this->task_list.begin(); it != this->task_list.end(); ++it) {
+        for (std::vector<Task>::const_iterator it = this->task_list.begin(); 
+                it != this->task_list.end(); 
+                ++it) {
             task_file << *it;        
         }
         task_file.close();
