@@ -126,7 +126,6 @@
   <ItemGroup>
     <ClInclude Include="text_buddy_command.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="task.h" />
     <ClInclude Include="text_buddy.h" />
   </ItemGroup>

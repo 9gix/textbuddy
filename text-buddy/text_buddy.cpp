@@ -14,6 +14,13 @@ const std::string TextBuddy::COMMAND_EXIT = std::string("exit");
 
 const std::string TextBuddy::TASK_FILENAME = std::string("task_list.txt");
 
+TextBuddy::TextBuddy() {
+
+}
+TextBuddy::~TextBuddy() {
+
+}
+
 void TextBuddy::runInteractively() {
     std::string command_line;
     while (std::cout << "Command: " && std::getline(std::cin, command_line)) {
@@ -56,7 +63,6 @@ void TextBuddy::executeCommand(const TextBuddyCommand &command) {
 }
 
 void TextBuddy::runFromScriptFile(char* filename) {
-    this->filename = std::string(filename);
     std::ifstream input_file(filename);
     std::string command_line;
     if (input_file.is_open()) {
@@ -71,11 +77,14 @@ void TextBuddy::runFromScriptFile(char* filename) {
 }
 
 void TextBuddy::run(int argc, char* argv[]) {
+    // restore existing task.
     this->load();
 
 	if (argc == 1) {
+        // User will run interactively from the command prompt
 		this->runInteractively();
 	} else if (argc == 2) {
+        // Run the script file containing the list of user command.
 		this->runFromScriptFile(argv[1]);
     } else {
         throw std::invalid_argument("Please provide input script or run without argument");

@@ -10,20 +10,30 @@ public:
 	TextBuddy();
 	~TextBuddy();
 
+    /* Application Mode. */
+    // Start Application Call
 	void run(int argc, char* argv[]);
+    // User Mode
     void runInteractively();
+    // Script Mode
     void runFromScriptFile(char* filename);
 
+
+    // User Command Parser and executor
     TextBuddyCommand parseCommand(const std::string &command_line);
     void executeCommand(const TextBuddyCommand &command);
 
+
+    // Basic Operation of the Task
     void addTask(const std::string &memo);
     void deleteTask(int task_no);
     void clearTask();
     void displayTask();
 
-    void load();
-    void save();
+
+    // IO Operation (Backup/Restore)
+    void load(); // clear and readd task from the task file to application
+    void save(); // store the task from application to a task file.
 
 private:
 
@@ -35,6 +45,5 @@ private:
     static const std::string TASK_FILENAME;
 
     std::vector<Task> task_list;
-    std::string filename;
 };
 

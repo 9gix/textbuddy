@@ -1,4 +1,7 @@
-# Created by https://www.gitignore.io/api/c++,visualstudio
+### Project Gitignore ###
+
+task_list.txt
+
 
 ### C++ ###
 # Compiled Object files
