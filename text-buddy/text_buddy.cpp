@@ -42,11 +42,13 @@ void TextBuddy::executeCommand(const TextBuddyCommand &command) {
     if (command.command.compare(TextBuddy::COMMAND_ADD) == 0) {
         std::string memo(command.argument);
         this->addTask(memo);
+        this->save();
         std::cout << "Added task: \"" << memo << "\"" << std::endl;
     } else if (command.command.compare(TextBuddy::COMMAND_DELETE) == 0) {
         int task_index = atoi(command.argument.c_str()) - 1;
         std::string memo(this->task_list.at(task_index).memo);
         this->deleteTask(task_index);
+        this->save();
         std::cout << "Deleted task: \"" << memo << "\"" << std::endl;
     } else if (command.command.compare(TextBuddy::COMMAND_CLEAR) == 0) {
         this->clearTask();
@@ -73,12 +75,10 @@ void TextBuddy::addTask(const std::string &memo) {
     Task task;
     task.memo = memo;
     this->task_list.push_back(task);
-    this->save();
 }
 
 void TextBuddy::deleteTask(int task_index) {
     this->task_list.erase(this->task_list.begin() + task_index);
-    this->save();
 }
 
 void TextBuddy::clearTask() {
@@ -93,6 +93,10 @@ void TextBuddy::displayTask() {
             std::cout << i + 1 << ". " << this->task_list.at(i).memo << std::endl;
         }
     }
+}
+
+std::vector<Task> TextBuddy::getTaskList() {
+    return this->task_list;
 }
 
 void TextBuddy::load() {

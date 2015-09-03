@@ -31,6 +31,8 @@ public:
     void load(); // clear and readd task from the task file to application
     void save(); // store the task from application to a task file.
 
+    std::vector<Task> getTaskList();
+
 private:
 
     static const std::string COMMAND_ADD;
