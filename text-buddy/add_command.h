@@ -11,6 +11,5 @@ public:
 private:
     TextBuddy* tb;
     std::string memo;
-    std::ostringstream outstream;
 };
 

@@ -54,7 +54,6 @@ std::tuple<std::string, std::string> splitFirstWhiteSpace(const std::string line
 }
 
 Command* TextBuddy::parseCommand(const std::string &command_line) {
-    Command* command;
     std::string cmd_token, arg_token;
 
     std::tie(cmd_token, arg_token) = splitFirstWhiteSpace(command_line);
@@ -82,7 +81,7 @@ void TextBuddy::addTask(const std::string &memo) {
 }
 
 void TextBuddy::deleteTask(int task_index) {
-    if (!this->task_list.empty() && this->task_list.size() > task_index) {
+    if (!this->task_list.empty() && (int)this->task_list.size() > task_index) {
         this->task_list.erase(this->task_list.begin() + task_index);
     } else {
         throw std::out_of_range("Invalid Task Index");

@@ -11,6 +11,5 @@ public:
 private:
     TextBuddy* tb;
     int task_index;
-    std::ostringstream outstream;
 };
 

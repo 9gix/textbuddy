@@ -1,5 +1,5 @@
 #include "display_command.h"
-
+#include "text_buddy.h"
 
 
 DisplayCommand::DisplayCommand(TextBuddy* textbuddy)
@@ -7,7 +7,6 @@ DisplayCommand::DisplayCommand(TextBuddy* textbuddy)
 }
 
 void DisplayCommand::execute() {
-    tb->displayTask();
     auto task_list = tb->getTaskList();
     if (task_list.empty()) {
         this->outstream << "Task List is empty" << std::endl;

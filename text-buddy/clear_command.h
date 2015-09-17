@@ -9,6 +9,5 @@ public:
     virtual void execute();
 private:
     TextBuddy* tb;
-    std::ostringstream outstream;
 };
 

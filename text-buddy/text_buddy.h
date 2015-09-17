@@ -23,7 +23,6 @@ public:
     void addTask(const std::string &memo);
     void deleteTask(int task_no);
     void clearTask();
-    void displayTask();
 
 
     // IO Operation (Backup/Restore)

@@ -2,7 +2,9 @@
 #include "CppUnitTest.h"
 #include <string>
 #include "text_buddy.h"
-
+#include "add_command.h"
+#include "delete_command.h"
+#include <cassert>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -27,42 +29,45 @@ namespace textbuddycommandtest {
         }
 
         TEST_METHOD(ParseAddCommand) {
-            TextBuddyCommand tbc = tb->parseCommand("add wash laundry");
-            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_ADD);
-            Assert::AreEqual(tbc.argument, std::string("wash laundry"));
+            Command* cmd = tb->parseCommand("add wash laundry");
+            cmd->execute();
+            Assert::AreEqual(std::string("wash laundry"), tb->getTaskList().at(0).memo);
         }
-
+        
         TEST_METHOD(ParseDeleteCommand) {
-            TextBuddyCommand tbc = tb->parseCommand("delete wash laundry");
-            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_DELETE);
-            Assert::AreEqual(tbc.argument, std::string("wash laundry"));
+            tb->addTask("Task 1");
+            Command* cmd = tb->parseCommand("delete 1");
+            cmd->execute();
+            Assert::AreEqual(0, (int)tb->getTaskList().size());
         }
 
         TEST_METHOD(ParseClearCommand) {
-            TextBuddyCommand tbc = tb->parseCommand("clear");
-            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_CLEAR);
+            for (int i = 0; i < 10; i++) {
+                tb->addTask(std::string("Task ") + std::to_string(i));
+            }
+            Command* cmd = tb->parseCommand("clear");
+            cmd->execute();
+            Assert::IsTrue(tb->getTaskList().empty());
         }
 
         TEST_METHOD(ParseDisplayCommand) {
-            TextBuddyCommand tbc = tb->parseCommand("display");
-            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_DISPLAY);
+            Command* cmd = tb->parseCommand("display");
+            cmd->execute();
+            std::stringstream out;
+            out << cmd;
+            Assert::AreEqual(std::string("Task List is empty\n"), out.str());
         }
 
+        /*
         TEST_METHOD(ParseSortCommand) {
-            TextBuddyCommand tbc = tb->parseCommand("sort");
-            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_SORT);
+            Command* cmd = tb->parseCommand("sort");
+            cmd->execute()
         }
 
         TEST_METHOD(ParseSearchCommand) {
-            TextBuddyCommand tbc = tb->parseCommand("search apple");
-            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_SEARCH);
-            Assert::AreEqual(tbc.argument, std::string("apple"));
+            Command* cmd = tb->parseCommand("search laundry");
+            cmd->execute();
         }
-
-        TEST_METHOD(ParseExitCommand) {
-            TextBuddyCommand tbc = tb->parseCommand("exit");
-            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_EXIT);
-        }
-
+        */
     };
 }
