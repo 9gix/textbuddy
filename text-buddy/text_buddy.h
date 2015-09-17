@@ -3,6 +3,7 @@
 #include <vector>
 #include "task.h"
 #include "text_buddy_command.h"
+#include "command.h"
 
 class TextBuddy
 {
@@ -16,9 +17,7 @@ public:
     void runInteractively();
 
     // User Command Parser and executor
-    TextBuddyCommand parseCommand(const std::string &command_line);
-    void executeCommand(const TextBuddyCommand &command);
-
+    Command* parseCommand(const std::string &command_line);
 
     // Basic Operation of the Task
     void addTask(const std::string &memo);
@@ -39,6 +38,8 @@ public:
     static const std::string COMMAND_DELETE;
     static const std::string COMMAND_CLEAR;
     static const std::string COMMAND_DISPLAY;
+    static const std::string COMMAND_SORT;
+    static const std::string COMMAND_SEARCH;
     static const std::string COMMAND_EXIT;
     static const std::string TASK_FILENAME;
 

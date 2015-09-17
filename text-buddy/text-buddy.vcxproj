@@ -136,10 +136,22 @@
     <Text Include="task_list.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="add_command.cpp" />
+    <ClCompile Include="clear_command.cpp" />
+    <ClCompile Include="command.cpp" />
+    <ClCompile Include="delete_command.cpp" />
+    <ClCompile Include="display_command.cpp" />
+    <ClCompile Include="exit_command.cpp" />
     <ClCompile Include="task.cpp" />
     <ClCompile Include="text_buddy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="add_command.h" />
+    <ClInclude Include="clear_command.h" />
+    <ClInclude Include="command.h" />
+    <ClInclude Include="delete_command.h" />
+    <ClInclude Include="display_command.h" />
+    <ClInclude Include="exit_command.h" />
     <ClInclude Include="task.h" />
     <ClInclude Include="text_buddy.h" />
     <ClInclude Include="text_buddy_command.h" />

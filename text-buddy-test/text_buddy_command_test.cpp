@@ -7,6 +7,12 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace textbuddycommandtest {
+    TEST_CLASS(TestTaskCommandExecution) {
+        TEST_METHOD(ExecuteSearchCommand){
+
+        }
+    };
+
     TEST_CLASS(TestTaskCommandParser) {
     private:
         TextBuddy* tb;
@@ -42,9 +48,21 @@ namespace textbuddycommandtest {
             Assert::AreEqual(tbc.command, TextBuddy::COMMAND_DISPLAY);
         }
 
+        TEST_METHOD(ParseSortCommand) {
+            TextBuddyCommand tbc = tb->parseCommand("sort");
+            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_SORT);
+        }
+
+        TEST_METHOD(ParseSearchCommand) {
+            TextBuddyCommand tbc = tb->parseCommand("search apple");
+            Assert::AreEqual(tbc.command, TextBuddy::COMMAND_SEARCH);
+            Assert::AreEqual(tbc.argument, std::string("apple"));
+        }
+
         TEST_METHOD(ParseExitCommand) {
             TextBuddyCommand tbc = tb->parseCommand("exit");
             Assert::AreEqual(tbc.command, TextBuddy::COMMAND_EXIT);
         }
+
     };
 }
