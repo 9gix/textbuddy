@@ -33,14 +33,16 @@ public:
 
     std::vector<Task> getTaskList();
 
-private:
 
+    // List of Command Declaration
     static const std::string COMMAND_ADD;
     static const std::string COMMAND_DELETE;
     static const std::string COMMAND_CLEAR;
     static const std::string COMMAND_DISPLAY;
     static const std::string COMMAND_EXIT;
     static const std::string TASK_FILENAME;
+
+private:
 
     std::vector<Task> task_list;
 };

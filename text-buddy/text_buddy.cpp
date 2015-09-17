@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <exception>
 #include "text_buddy.h"
 #include "task.h"
 #include "text_buddy_command.h"
@@ -78,7 +79,11 @@ void TextBuddy::addTask(const std::string &memo) {
 }
 
 void TextBuddy::deleteTask(int task_index) {
-    this->task_list.erase(this->task_list.begin() + task_index);
+    if (!this->task_list.empty() && this->task_list.size() > task_index) {
+        this->task_list.erase(this->task_list.begin() + task_index);
+    } else {
+        throw std::out_of_range("Invalid Task Index");
+    }
 }
 
 void TextBuddy::clearTask() {
