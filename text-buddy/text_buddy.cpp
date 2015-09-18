@@ -3,14 +3,27 @@
 #include <string>
 #include <sstream>
 #include <exception>
+#include <functional>
 #include "text_buddy.h"
 #include "task.h"
-#include "text_buddy_command.h"
+#include "command.h"
+#include "add_command.h"
+#include "delete_command.h"
+#include "clear_command.h"
+#include "sort_command.h"
+#include "search_command.h"
+#include "exit_command.h"
+#include "display_command.h"
+#include <tuple>
+#include <algorithm>
+#include <map>
 
 const std::string TextBuddy::COMMAND_ADD = std::string("add");
 const std::string TextBuddy::COMMAND_DELETE = std::string("delete");
 const std::string TextBuddy::COMMAND_CLEAR = std::string("clear");
 const std::string TextBuddy::COMMAND_DISPLAY = std::string("display");
+const std::string TextBuddy::COMMAND_SEARCH = std::string("search");
+const std::string TextBuddy::COMMAND_SORT = std::string("sort");
 const std::string TextBuddy::COMMAND_EXIT = std::string("exit");
 
 const std::string TextBuddy::TASK_FILENAME = std::string("task_list.txt");
@@ -23,47 +36,41 @@ TextBuddy::~TextBuddy() {
 }
 
 void TextBuddy::runInteractively() {
+    std::cout << "Welcome to TextBuddy" << std::endl << std::endl;
     std::string command_line;
     while (std::getline(std::cin, command_line)) {
         std::cout << "Command: " << command_line << std::endl;
-        TextBuddyCommand command = this->parseCommand(command_line);
-        this->executeCommand(command);
+        //TextBuddyCommand command_token = this->parseCommand(command_line);
+        Command* command = this->parseCommand(command_line);
+        command->execute();
+        std::cout << command << std::endl;
+        delete command;
     }
 }
 
-TextBuddyCommand TextBuddy::parseCommand(const std::string &command_line) {
-    TextBuddyCommand command;
-    std::istringstream command_stream(command_line);
-    command_stream >> command.command >> std::ws;
-    std::getline(command_stream, command.argument);
-    return command;
+std::tuple<std::string, std::string> splitFirstWhiteSpace(const std::string line) {
+    std::string head, tail;
+    std::istringstream command_stream(line);
+    command_stream >> head >> std::ws;
+    std::getline(command_stream, tail);
+    return std::make_tuple(head, tail);
 }
 
-void TextBuddy::executeCommand(const TextBuddyCommand &command) {
-    if (command.command.compare(TextBuddy::COMMAND_ADD) == 0) {
-        std::string memo(command.argument);
-        this->addTask(memo);
-        this->save();
-        std::cout << "Added task: \"" << memo << "\"" << std::endl;
-    } else if (command.command.compare(TextBuddy::COMMAND_DELETE) == 0) {
-        int task_index = atoi(command.argument.c_str()) - 1;
-        std::string memo(this->task_list.at(task_index).memo);
-        this->deleteTask(task_index);
-        this->save();
-        std::cout << "Deleted task: \"" << memo << "\"" << std::endl;
-    } else if (command.command.compare(TextBuddy::COMMAND_CLEAR) == 0) {
-        this->clearTask();
-        this->save();
-        std::cout << "All task have been deleted" << std::endl;
-    } else if (command.command.compare(TextBuddy::COMMAND_DISPLAY) == 0) {
-        // this->load(); // re-loading is not efficient. Consider diff algorithm later instead.
-        this->displayTask();
-    } else if (command.command.compare(TextBuddy::COMMAND_EXIT) == 0) {
-        exit(EXIT_SUCCESS);
-    } else {
-        // TODO: raise unregistered command exception
-    }
-    std::cout << std::endl;
+Command* TextBuddy::parseCommand(const std::string &command_line) {
+    std::string cmd_token, arg_token;
+
+    std::tie(cmd_token, arg_token) = splitFirstWhiteSpace(command_line);
+
+    std::map<std::string, Command*> command_map {
+        { TextBuddy::COMMAND_ADD, new AddCommand(this, arg_token) },
+        { TextBuddy::COMMAND_DELETE, new DeleteCommand(this, atoi(arg_token.c_str()))},
+        { TextBuddy::COMMAND_CLEAR, new ClearCommand(this)},
+        { TextBuddy::COMMAND_SORT, new SortCommand(this)},
+        { TextBuddy::COMMAND_SEARCH, new SearchCommand(this, arg_token)},
+        { TextBuddy::COMMAND_EXIT, new ExitCommand()},
+        { TextBuddy::COMMAND_DISPLAY, new DisplayCommand(this)},
+    };
+    return command_map.at(cmd_token);
 }
 
 void TextBuddy::run(int argc, char* argv[]) {
@@ -79,7 +86,7 @@ void TextBuddy::addTask(const std::string &memo) {
 }
 
 void TextBuddy::deleteTask(int task_index) {
-    if (!this->task_list.empty() && this->task_list.size() > task_index) {
+    if (!this->task_list.empty() && (int)this->task_list.size() > task_index) {
         this->task_list.erase(this->task_list.begin() + task_index);
     } else {
         throw std::out_of_range("Invalid Task Index");
@@ -90,14 +97,8 @@ void TextBuddy::clearTask() {
     this->task_list.clear();
 }
 
-void TextBuddy::displayTask() {
-    if (this->task_list.empty()) {
-        std::cout << "Task List is empty" << std::endl;
-    } else {
-        for (size_t i = 0; i < this->task_list.size(); ++i) {
-            std::cout << i + 1 << ". " << this->task_list.at(i).memo << std::endl;
-        }
-    }
+void TextBuddy::sortTask() {
+    std::sort(this->task_list.begin(), this->task_list.end());
 }
 
 std::vector<Task> TextBuddy::getTaskList() {

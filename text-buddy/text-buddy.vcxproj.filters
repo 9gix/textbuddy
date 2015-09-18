@@ -25,6 +25,30 @@
     <ClCompile Include="text_buddy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="add_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="delete_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clear_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="display_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exit_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sort_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="search_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="task.h">
@@ -33,7 +57,28 @@
     <ClInclude Include="text_buddy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="text_buddy_command.h">
+    <ClInclude Include="command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="add_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="delete_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clear_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="display_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exit_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sort_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="search_command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

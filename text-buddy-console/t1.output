@@ -1,21 +1,34 @@
+Welcome to TextBuddy
+
+Command: clear
+All task have been deleted
+
 Command: add cs2103 assignment
 Added task: "cs2103 assignment"
-
-Command: display
-1. cs2103 assignment
 
 Command: add cs3283 project
 Added task: "cs3283 project"
 
+Command: add cs2103 meeting
+Added task: "cs2103 meeting"
+
+Command: search cs2103
+1. cs2103 assignment
+3. cs2103 meeting
+
+Command: sort
+
+Command: display
+1. cs2103 assignment
+2. cs2103 meeting
+3. cs3283 project
+
+Command: delete 2
+Deleted task: "cs2103 meeting"
+
 Command: display
 1. cs2103 assignment
 2. cs3283 project
-
-Command: delete 2
-Deleted task: "cs3283 project"
-
-Command: display
-1. cs2103 assignment
 
 Command: clear
 All task have been deleted
