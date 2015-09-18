@@ -158,7 +158,6 @@
     <ClInclude Include="sort_command.h" />
     <ClInclude Include="task.h" />
     <ClInclude Include="text_buddy.h" />
-    <ClInclude Include="text_buddy_command.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

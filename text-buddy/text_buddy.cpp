@@ -6,7 +6,6 @@
 #include <functional>
 #include "text_buddy.h"
 #include "task.h"
-#include "text_buddy_command.h"
 #include "command.h"
 #include "add_command.h"
 #include "delete_command.h"

@@ -15,7 +15,7 @@ namespace textbuddycommandtest {
         }
     };
 
-    TEST_CLASS(TestTaskCommandParser) {
+    TEST_CLASS(TestTaskCommand) {
     private:
         TextBuddy* tb;
     public:

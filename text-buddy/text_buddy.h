@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include "task.h"
-#include "text_buddy_command.h"
 #include "command.h"
 
 class TextBuddy
