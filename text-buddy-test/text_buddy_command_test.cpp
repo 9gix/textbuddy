@@ -28,20 +28,20 @@ namespace textbuddycommandtest {
             delete tb;
         }
 
-        TEST_METHOD(ParseAddCommand) {
+        TEST_METHOD(ExecuteAddCommand) {
             Command* cmd = tb->parseCommand("add wash laundry");
             cmd->execute();
             Assert::AreEqual(std::string("wash laundry"), tb->getTaskList().at(0).memo);
         }
         
-        TEST_METHOD(ParseDeleteCommand) {
+        TEST_METHOD(ExecuteDeleteCommand) {
             tb->addTask("Task 1");
             Command* cmd = tb->parseCommand("delete 1");
             cmd->execute();
             Assert::AreEqual(0, (int)tb->getTaskList().size());
         }
 
-        TEST_METHOD(ParseClearCommand) {
+        TEST_METHOD(ExecuteClearCommand) {
             for (int i = 0; i < 10; i++) {
                 tb->addTask(std::string("Task ") + std::to_string(i));
             }
@@ -50,7 +50,7 @@ namespace textbuddycommandtest {
             Assert::IsTrue(tb->getTaskList().empty());
         }
 
-        TEST_METHOD(ParseDisplayCommand) {
+        TEST_METHOD(ExecuteDisplayCommand) {
             Command* cmd = tb->parseCommand("display");
             cmd->execute();
             std::stringstream out;
@@ -58,7 +58,7 @@ namespace textbuddycommandtest {
             Assert::AreEqual(std::string("Task List is empty\n"), out.str());
         }
 
-        TEST_METHOD(ParseSortCommand) {
+        TEST_METHOD(ExecuteSortCommand) {
             tb->addTask("Task 2");
             tb->addTask("Task 3");
             tb->addTask("Task 1");
@@ -69,9 +69,16 @@ namespace textbuddycommandtest {
             Assert::AreEqual(std::string("Task 3"), tb->getTaskList()[2].memo);
         }
 
-        //TEST_METHOD(ParseSearchCommand) {
-        //    Command* cmd = tb->parseCommand("search laundry");
-        //    cmd->execute();
-        //}
+        TEST_METHOD(ExecuteSearchCommand) {
+            tb->addTask("wash laundry");
+            tb->addTask("buy supply");
+            tb->addTask("pickup laundry");
+            Command* cmd = tb->parseCommand("search laundry");
+            cmd->execute();
+
+            std::stringstream out;
+            out << cmd;
+            Assert::AreEqual(std::string("1. wash laundry\n3. pickup laundry\n"), out.str());
+        }
     };
 }

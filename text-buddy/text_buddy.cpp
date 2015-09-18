@@ -12,6 +12,7 @@
 #include "delete_command.h"
 #include "clear_command.h"
 #include "sort_command.h"
+#include "search_command.h"
 #include "exit_command.h"
 #include "display_command.h"
 #include <tuple>
@@ -65,6 +66,7 @@ Command* TextBuddy::parseCommand(const std::string &command_line) {
         { TextBuddy::COMMAND_DELETE, new DeleteCommand(this, atoi(arg_token.c_str()))},
         { TextBuddy::COMMAND_CLEAR, new ClearCommand(this)},
         { TextBuddy::COMMAND_SORT, new SortCommand(this)},
+        { TextBuddy::COMMAND_SEARCH, new SearchCommand(this, arg_token)},
         { TextBuddy::COMMAND_EXIT, new ExitCommand()},
         { TextBuddy::COMMAND_DISPLAY, new DisplayCommand(this)},
     };

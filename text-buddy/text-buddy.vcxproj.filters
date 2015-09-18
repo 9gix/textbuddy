@@ -46,6 +46,9 @@
     <ClCompile Include="sort_command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="search_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="task.h">
@@ -76,6 +79,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sort_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="search_command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
