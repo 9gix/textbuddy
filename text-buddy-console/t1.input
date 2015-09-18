@@ -1,6 +1,9 @@
+clear
 add cs2103 assignment
-display
 add cs3283 project
+add cs2103 meeting
+search cs2103
+sort
 display
 delete 2
 display

@@ -37,6 +37,7 @@ TextBuddy::~TextBuddy() {
 }
 
 void TextBuddy::runInteractively() {
+    std::cout << "Welcome to TextBuddy" << std::endl << std::endl;
     std::string command_line;
     while (std::getline(std::cin, command_line)) {
         std::cout << "Command: " << command_line << std::endl;
