@@ -7,3 +7,7 @@ std::ostream& operator<<(std::ostream& out, const Task &task) {
     out << task.memo << std::endl;
     return out;
 }
+
+bool Task::operator<(const Task & task2) {
+    return this->memo.compare(task2.memo) < 0;
+}

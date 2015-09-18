@@ -142,6 +142,7 @@
     <ClCompile Include="delete_command.cpp" />
     <ClCompile Include="display_command.cpp" />
     <ClCompile Include="exit_command.cpp" />
+    <ClCompile Include="sort_command.cpp" />
     <ClCompile Include="task.cpp" />
     <ClCompile Include="text_buddy.cpp" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="delete_command.h" />
     <ClInclude Include="display_command.h" />
     <ClInclude Include="exit_command.h" />
+    <ClInclude Include="sort_command.h" />
     <ClInclude Include="task.h" />
     <ClInclude Include="text_buddy.h" />
     <ClInclude Include="text_buddy_command.h" />

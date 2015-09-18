@@ -23,7 +23,7 @@ public:
     void addTask(const std::string &memo);
     void deleteTask(int task_no);
     void clearTask();
-
+    void sortTask();
 
     // IO Operation (Backup/Restore)
     void load(); // clear and readd task from the task file to application

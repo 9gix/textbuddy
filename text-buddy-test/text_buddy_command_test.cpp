@@ -58,16 +58,20 @@ namespace textbuddycommandtest {
             Assert::AreEqual(std::string("Task List is empty\n"), out.str());
         }
 
-        /*
         TEST_METHOD(ParseSortCommand) {
+            tb->addTask("Task 2");
+            tb->addTask("Task 3");
+            tb->addTask("Task 1");
             Command* cmd = tb->parseCommand("sort");
-            cmd->execute()
+            cmd->execute();
+            Assert::AreEqual(std::string("Task 1"), tb->getTaskList()[0].memo);
+            Assert::AreEqual(std::string("Task 2"), tb->getTaskList()[1].memo);
+            Assert::AreEqual(std::string("Task 3"), tb->getTaskList()[2].memo);
         }
 
-        TEST_METHOD(ParseSearchCommand) {
-            Command* cmd = tb->parseCommand("search laundry");
-            cmd->execute();
-        }
-        */
+        //TEST_METHOD(ParseSearchCommand) {
+        //    Command* cmd = tb->parseCommand("search laundry");
+        //    cmd->execute();
+        //}
     };
 }
