@@ -4,8 +4,7 @@
 #include "task.h"
 #include "command.h"
 
-class TextBuddy
-{
+class TextBuddy {
 public:
 	TextBuddy();
 	~TextBuddy();
@@ -16,6 +15,7 @@ public:
     void runInteractively();
 
     // User Command Parser and executor
+    // return the command class from a given sentence
     Command* parseCommand(const std::string &command_line);
 
     // Basic Operation of the Task
@@ -42,7 +42,6 @@ public:
     static const std::string TASK_FILENAME;
 
 private:
-
     std::vector<Task> task_list;
 };
 

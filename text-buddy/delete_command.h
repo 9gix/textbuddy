@@ -2,8 +2,8 @@
 #include "command.h"
 #include <sstream>
 #include "text_buddy.h"
-class DeleteCommand :
-    public Command {
+
+class DeleteCommand : public Command {
 public:
     DeleteCommand(TextBuddy*, int);
     virtual void execute();

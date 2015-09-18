@@ -1,11 +1,11 @@
 #pragma once
 #include <sstream>
 
+/* Base Class for TextBuddy Command */
 class Command {
 public:
     virtual ~Command() {};
     virtual void execute() = 0;
-    virtual void print(std::ostream& out) const;
     friend std::ostream& operator<<(std::ostream&, const Command*);
 protected:
     Command() {};

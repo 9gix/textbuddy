@@ -2,7 +2,6 @@
 #include "text_buddy.h"
 
 
-
 ClearCommand::ClearCommand(TextBuddy* textbuddy)
     : tb(textbuddy) {
 }

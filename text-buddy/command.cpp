@@ -1,12 +1,8 @@
 #include "command.h"
 
 
-void Command::print(std::ostream& out) const {
-    out << this->outstream.str();
-}
-
-
+/* overload function for stream output */
 std::ostream & operator<<(std::ostream &out, const Command* cmd) {
-    cmd->print(out);
+    out << cmd->outstream.str();
     return out;
 }

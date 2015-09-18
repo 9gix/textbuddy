@@ -40,20 +40,11 @@ void TextBuddy::runInteractively() {
     std::string command_line;
     while (std::getline(std::cin, command_line)) {
         std::cout << "Command: " << command_line << std::endl;
-        //TextBuddyCommand command_token = this->parseCommand(command_line);
         Command* command = this->parseCommand(command_line);
         command->execute();
         std::cout << command << std::endl;
         delete command;
     }
-}
-
-std::tuple<std::string, std::string> splitFirstWhiteSpace(const std::string line) {
-    std::string head, tail;
-    std::istringstream command_stream(line);
-    command_stream >> head >> std::ws;
-    std::getline(command_stream, tail);
-    return std::make_tuple(head, tail);
 }
 
 Command* TextBuddy::parseCommand(const std::string &command_line) {
@@ -126,4 +117,14 @@ void TextBuddy::save() {
         }
         task_file.close();
     }
+}
+
+
+/* Split only on first whitespace, return a tuple of <First word, Remaining String> */
+std::tuple<std::string, std::string> splitFirstWhiteSpace(const std::string line) {
+    std::string head, tail;
+    std::istringstream command_stream(line);
+    command_stream >> head >> std::ws;
+    std::getline(command_stream, tail);
+    return std::make_tuple(head, tail);
 }

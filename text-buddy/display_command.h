@@ -3,8 +3,7 @@
 #include <sstream>
 #include "text_buddy.h"
 
-class DisplayCommand :
-    public Command {
+class DisplayCommand : public Command {
 public:
     DisplayCommand(TextBuddy*);
     virtual void execute();

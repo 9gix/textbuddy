@@ -2,7 +2,6 @@
 #include "text_buddy.h"
 
 
-
 SortCommand::SortCommand(TextBuddy* textbuddy) : tb(textbuddy) {
 }
 

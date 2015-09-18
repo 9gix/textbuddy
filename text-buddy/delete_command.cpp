@@ -2,7 +2,6 @@
 #include "text_buddy.h"
 
 
-
 DeleteCommand::DeleteCommand(TextBuddy* textbuddy, int task_id) 
     : tb(textbuddy) {
     this->task_index = task_id - 1;
