@@ -14,6 +14,7 @@
 #include "search_command.h"
 #include "exit_command.h"
 #include "display_command.h"
+#include "utils.h"
 #include <tuple>
 #include <algorithm>
 #include <map>
@@ -119,12 +120,3 @@ void TextBuddy::save() {
     }
 }
 
-
-/* Split only on first whitespace, return a tuple of <First word, Remaining String> */
-std::tuple<std::string, std::string> splitFirstWhiteSpace(const std::string line) {
-    std::string head, tail;
-    std::istringstream command_stream(line);
-    command_stream >> head >> std::ws;
-    std::getline(command_stream, tail);
-    return std::make_tuple(head, tail);
-}
